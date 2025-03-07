@@ -398,3 +398,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+#SQL Lite files:
+*.db
+*.db-wal
+*.db-shm
