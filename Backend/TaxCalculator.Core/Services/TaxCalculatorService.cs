@@ -1,22 +1,24 @@
-﻿using TaxCalculator.Core.Entities.Results;
+﻿using AutoMapper;
+using TaxCalculator.Core.DTOs;
+using TaxCalculator.Core.Entities.Results;
 using TaxCalculator.Core.Interfaces;
-using TaxCalculator.Core.Utils;
 
 namespace TaxCalculator.Core.Services
 {
     public class TaxCalculatorService : ITaxCalculatorService
     {
         private readonly ITaxBandRepository _taxBandRepository;
+        private readonly IMapper _mapper;
 
-        public TaxCalculatorService(ITaxBandRepository taxBandRepository)
+        public TaxCalculatorService(ITaxBandRepository taxBandRepository, IMapper mapper)
         {
             _taxBandRepository = taxBandRepository;
+            _mapper = mapper;
         }
 
         public async Task<SalaryCalculationResult> CalculateTaxAsync(decimal grossSalary, CancellationToken token)
         {
             var taxBands = await _taxBandRepository.GetAllAsync(token);
-            var result = new SalaryCalculationResult { GrossAnnualSalary = grossSalary };
             decimal totalTax = 0;
 
             foreach (var band in taxBands.OrderBy(b => b.LowerLimit))
@@ -36,12 +38,13 @@ namespace TaxCalculator.Core.Services
                 totalTax += taxableAmount * band.TaxRate / 100;
             }
 
-            result.AnnualTaxPaid = RoundUtil.UptoTwoDecimalPoints(totalTax);
-            result.GrossMonthlySalary = RoundUtil.UptoTwoDecimalPoints(result.GrossAnnualSalary / 12);
-            result.NetAnnualSalary = RoundUtil.UptoTwoDecimalPoints(result.GrossAnnualSalary - result.AnnualTaxPaid);
-            result.NetMonthlySalary = RoundUtil.UptoTwoDecimalPoints(result.NetAnnualSalary / 12);
-            result.MonthlyTaxPaid = RoundUtil.UptoTwoDecimalPoints(result.AnnualTaxPaid / 12);
-            return result;
+            var result = new SalaryCalculationResultDto
+            {
+                GrossAnnualSalary = grossSalary,
+                AnnualTaxPaid = totalTax
+            };
+
+            return _mapper.Map<SalaryCalculationResult>(result);
         }
     }
 }
