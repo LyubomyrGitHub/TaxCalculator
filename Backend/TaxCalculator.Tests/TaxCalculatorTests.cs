@@ -27,7 +27,11 @@ namespace TaxCalculator.Tests
         [Test]
         public async Task CalculateTax_10000Salary_ReturnsCorrectTax()
         {
+            // Arrange
+            // Act
             var result = await _service.CalculateTaxAsync(10000, It.IsAny<CancellationToken>());
+
+            // Assert
             Assert.AreEqual(1000, result.AnnualTaxPaid);
             Assert.AreEqual(9000, result.NetAnnualSalary);
         }
@@ -35,7 +39,11 @@ namespace TaxCalculator.Tests
         [Test]
         public async Task CalculateTax_40000Salary_ReturnsCorrectTax()
         {
+            // Arrange
+            // Act
             var result = await _service.CalculateTaxAsync(40000, It.IsAny<CancellationToken>());
+
+            // Assert
             Assert.AreEqual(11000, result.AnnualTaxPaid);
             Assert.AreEqual(29000, result.NetAnnualSalary);
         }

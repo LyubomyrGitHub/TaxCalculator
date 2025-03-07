@@ -1,5 +1,6 @@
 ﻿using TaxCalculator.Core.Entities.Results;
 using TaxCalculator.Core.Interfaces;
+using TaxCalculator.Core.Utils;
 
 namespace TaxCalculator.Core.Services
 {
@@ -35,11 +36,11 @@ namespace TaxCalculator.Core.Services
                 totalTax += taxableAmount * band.TaxRate / 100;
             }
 
-            result.AnnualTaxPaid = totalTax;
-            result.GrossMonthlySalary = result.GrossAnnualSalary / 12;
-            result.NetAnnualSalary = result.GrossAnnualSalary - result.AnnualTaxPaid;
-            result.NetMonthlySalary = result.NetAnnualSalary / 12;
-            result.MonthlyTaxPaid = result.AnnualTaxPaid / 12;
+            result.AnnualTaxPaid = RoundUtil.UptoTwoDecimalPoints(totalTax);
+            result.GrossMonthlySalary = RoundUtil.UptoTwoDecimalPoints(result.GrossAnnualSalary / 12);
+            result.NetAnnualSalary = RoundUtil.UptoTwoDecimalPoints(result.GrossAnnualSalary - result.AnnualTaxPaid);
+            result.NetMonthlySalary = RoundUtil.UptoTwoDecimalPoints(result.NetAnnualSalary / 12);
+            result.MonthlyTaxPaid = RoundUtil.UptoTwoDecimalPoints(result.AnnualTaxPaid / 12);
             return result;
         }
     }
