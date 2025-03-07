@@ -1,4 +1,4 @@
-﻿using TaxCalculator.Core.Entities;
+﻿using TaxCalculator.Core.Entities.Results;
 using TaxCalculator.Core.Interfaces;
 
 namespace TaxCalculator.Core.Services

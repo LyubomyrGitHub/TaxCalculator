@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TaxCalculator.Core.Entities.Requests;
 using TaxCalculator.Core.Interfaces;
 
 namespace TaxCalculator.WebApi.Controllers
@@ -8,9 +9,12 @@ namespace TaxCalculator.WebApi.Controllers
     public class SalaryController(ITaxCalculatorService taxCalculatorService, ILogger < SalaryController > logger) : ControllerBase
     {
         [HttpPost("calculate")]
-        public async Task<IActionResult> Calculate([FromBody] decimal grossSalary, CancellationToken token)
+        public async Task<IActionResult> Calculate([FromBody] TaxRequest request, CancellationToken token)
         {
-            var result = await taxCalculatorService.CalculateTaxAsync(grossSalary, token);
+            if (request.GrossSalary <= 0)
+                return BadRequest("Gross Salary must be greater than zero.");
+
+            var result = await taxCalculatorService.CalculateTaxAsync(request.GrossSalary, token);
             return Ok(result);
         }
     }
