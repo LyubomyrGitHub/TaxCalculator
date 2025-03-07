@@ -36,6 +36,10 @@ namespace TaxCalculator.Core.Services
             }
 
             result.AnnualTaxPaid = totalTax;
+            result.GrossMonthlySalary = result.GrossAnnualSalary / 12;
+            result.NetAnnualSalary = result.GrossAnnualSalary - result.AnnualTaxPaid;
+            result.NetMonthlySalary = result.NetAnnualSalary / 12;
+            result.MonthlyTaxPaid = result.AnnualTaxPaid / 12;
             return result;
         }
     }
