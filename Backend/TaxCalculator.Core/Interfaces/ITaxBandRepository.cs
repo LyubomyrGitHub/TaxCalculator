@@ -4,6 +4,6 @@ namespace TaxCalculator.Core.Interfaces
 {
     public interface ITaxBandRepository
     {
-        Task<List<TaxBand>> GetAllAsync();
+        Task<List<TaxBand>> GetAllAsync(CancellationToken token);
     }
 }

@@ -5,21 +5,12 @@ namespace TaxCalculator.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SalaryController : ControllerBase
+    public class SalaryController(ITaxCalculatorService taxCalculatorService, ILogger < SalaryController > logger) : ControllerBase
     {
-        private readonly ITaxCalculatorService _taxCalculatorService;
-        private readonly ILogger<SalaryController> _logger;
-
-        public SalaryController(ITaxCalculatorService taxCalculatorService, ILogger<SalaryController> logger)
-        {
-            _taxCalculatorService = taxCalculatorService;
-            _logger = logger;
-        }
-
         [HttpPost("calculate")]
-        public async Task<IActionResult> Calculate([FromBody] decimal grossSalary)
+        public async Task<IActionResult> Calculate([FromBody] decimal grossSalary, CancellationToken token)
         {
-            var result = await _taxCalculatorService.CalculateTaxAsync(grossSalary);
+            var result = await taxCalculatorService.CalculateTaxAsync(grossSalary, token);
             return Ok(result);
         }
     }

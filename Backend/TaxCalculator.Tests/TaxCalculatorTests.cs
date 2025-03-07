@@ -15,7 +15,7 @@ namespace TaxCalculator.Tests
         public void Setup()
         {
             _mockRepo = new Mock<ITaxBandRepository>();
-            _mockRepo.Setup(repo => repo.GetAllAsync()).ReturnsAsync(new List<TaxBand>
+            _mockRepo.Setup(repo => repo.GetAllAsync(It.IsAny<CancellationToken>())).ReturnsAsync(new List<TaxBand>
             {
                 new TaxBand { LowerLimit = 0, UpperLimit = 5000, TaxRate = 0 },
                 new TaxBand { LowerLimit = 5000, UpperLimit = 20000, TaxRate = 20 },
@@ -27,7 +27,7 @@ namespace TaxCalculator.Tests
         [Test]
         public async Task CalculateTax_10000Salary_ReturnsCorrectTax()
         {
-            var result = await _service.CalculateTaxAsync(10000);
+            var result = await _service.CalculateTaxAsync(10000, It.IsAny<CancellationToken>());
             Assert.AreEqual(1000, result.AnnualTaxPaid);
             Assert.AreEqual(9000, result.NetAnnualSalary);
         }
@@ -35,7 +35,7 @@ namespace TaxCalculator.Tests
         [Test]
         public async Task CalculateTax_40000Salary_ReturnsCorrectTax()
         {
-            var result = await _service.CalculateTaxAsync(40000);
+            var result = await _service.CalculateTaxAsync(40000, It.IsAny<CancellationToken>());
             Assert.AreEqual(11000, result.AnnualTaxPaid);
             Assert.AreEqual(29000, result.NetAnnualSalary);
         }

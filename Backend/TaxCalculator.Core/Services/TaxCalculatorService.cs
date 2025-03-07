@@ -12,9 +12,9 @@ namespace TaxCalculator.Core.Services
             _taxBandRepository = taxBandRepository;
         }
 
-        public async Task<SalaryCalculationResult> CalculateTaxAsync(decimal grossSalary)
+        public async Task<SalaryCalculationResult> CalculateTaxAsync(decimal grossSalary, CancellationToken token)
         {
-            var taxBands = await _taxBandRepository.GetAllAsync();
+            var taxBands = await _taxBandRepository.GetAllAsync(token);
             var result = new SalaryCalculationResult { GrossAnnualSalary = grossSalary };
             decimal totalTax = 0;
 

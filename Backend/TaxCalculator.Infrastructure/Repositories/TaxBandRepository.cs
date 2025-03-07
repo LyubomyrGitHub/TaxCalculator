@@ -14,9 +14,9 @@ namespace TaxCalculator.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<List<TaxBand>> GetAllAsync()
+        public async Task<List<TaxBand>> GetAllAsync(CancellationToken token)
         {
-            return await _context.TaxBands.ToListAsync();
+            return await _context.TaxBands.ToListAsync(token);
         }
     }
 }
