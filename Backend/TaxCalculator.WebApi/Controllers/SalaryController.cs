@@ -5,13 +5,15 @@ namespace TaxCalculator.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SalaryController : ControllerBase//todo add logger and token
+    public class SalaryController : ControllerBase
     {
         private readonly ITaxCalculatorService _taxCalculatorService;
+        private readonly ILogger<SalaryController> _logger;
 
-        public SalaryController(ITaxCalculatorService taxCalculatorService)
+        public SalaryController(ITaxCalculatorService taxCalculatorService, ILogger<SalaryController> logger)
         {
             _taxCalculatorService = taxCalculatorService;
+            _logger = logger;
         }
 
         [HttpPost("calculate")]
