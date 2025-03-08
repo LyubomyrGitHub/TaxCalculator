@@ -6,16 +6,16 @@ It calculates tax based on predefined tax bands stored in an database and provid
 
 ## How to Run
 1. **Backend**:
-   - Navigate to `Backend/TaxCalculator.WebApi/`.
+   - Navigate to `backend/TaxCalculator.WebApi/`.
    - Run `dotnet run`.
    - Access Swagger at `http://localhost:5000/swagger`.
 2. **Frontend**:
-   - Navigate to `Frontend/TaxCalculator.UI/`.
+   - Navigate to `frontend/TaxCalculator.UI/`.
    - Run `npm install` and `ng serve`.
    - Access the app at `http://localhost:4200`.
 
 ## How to Run Frontend Tests:
-   **Navigate to `Frontend/TaxCalculator.UI/`.**
+   **Navigate to `frontend/TaxCalculator.UI/`.**
    
    - Interactive mode: `ng test --project=tax-calculator-ui`
 
