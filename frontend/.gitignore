@@ -1,0 +1,42 @@
+# Node.js and npm
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json  # Optional: Include if you prefer Yarn or manual lockfile management
+
+# Angular build output
+dist/
+out-tsc/
+*.log
+
+# Dependency directories
+/bower_components/
+
+# Test coverage reports
+coverage/
+*.lcov
+
+# Angular CLI generated files
+.angular/cache/  # Angular CLI cache (introduced in newer versions)
+
+# IDE and editor files
+.idea/           # IntelliJ IDEA
+.vscode/         # Visual Studio Code
+*.sublime-*      # Sublime Text
+*.swp            # Vim swap files
+
+# OS-generated files
+.DS_Store        # macOS
+Thumbs.db        # Windows
+
+# Environment files (optional, depending on your setup)
+src/environments/environment.*.ts  # Exclude specific environment files if they contain secrets
+!src/environments/environment.ts    # Keep the default environment file
+
+# Miscellaneous
+*.bak
+*.tmp
+*.temp
+
+# Proxy configuration (optional, if you don’t want it tracked)
+proxy.conf.json  # Exclude if it contains local dev settings
