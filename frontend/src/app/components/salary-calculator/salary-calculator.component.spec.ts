@@ -1,10 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SalaryCalculatorComponent } from './salary-calculator.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SalaryService } from '../../services/salary.service';
 import { of } from 'rxjs';
 
@@ -18,14 +13,7 @@ describe('SalaryCalculatorComponent', () => {
     mockSalaryService.calculateSalary.and.returnValue(of({}));
 
     await TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCardModule,
-        BrowserAnimationsModule
-      ],
-      declarations: [SalaryCalculatorComponent],
+      imports: [SalaryCalculatorComponent],
       providers: [{ provide: SalaryService, useValue: mockSalaryService }]
     }).compileComponents();
 
