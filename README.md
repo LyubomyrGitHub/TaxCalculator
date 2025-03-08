@@ -14,6 +14,18 @@ It calculates tax based on predefined tax bands stored in an database and provid
    - Run `npm install` and `ng serve`.
    - Access the app at `http://localhost:4200`.
 
+## How to Run Frontend Tests:
+   **Navigate to `Frontend/TaxCalculator.UI/`.**
+   
+   - Interactive mode.
+   ng test --project=tax-calculator-ui
+
+   - Single run (headless).
+   ng test --project=tax-calculator-ui --watch=false --browsers=ChromeHeadless
+   
+   - Troubleshoot If Needed.
+   ng test --project=tax-calculator-ui --verbose
+
 ## Docker Setup
 - Ensure Docker is installed.
 - Run `docker-compose up --build` from the root directory.
