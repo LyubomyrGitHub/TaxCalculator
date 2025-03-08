@@ -17,7 +17,7 @@ coverage/
 *.lcov
 
 # Angular CLI generated files
-.angular/cache/  # Angular CLI cache (introduced in newer versions)
+.angular/
 
 # IDE and editor files
 .idea/           # IntelliJ IDEA
