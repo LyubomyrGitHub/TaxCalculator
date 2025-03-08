@@ -23,7 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class SalaryCalculatorComponent {
   salaryForm = new FormGroup({
-    grossSalary: new FormControl('', [Validators.required, Validators.min(0)])
+    grossSalary: new FormControl('', [Validators.required, Validators.min(0.01)])
   });
   isCalculating = false;
   result: any = null;
@@ -40,5 +40,11 @@ export class SalaryCalculatorComponent {
         next: (result) => this.result = result,
         error: (err) => console.error(err)
       });
+  }
+
+  formatNumber(value: number): string {
+    const str = value.toString();
+    const [integer, fraction = '00'] = str.split('.');
+    return `<span class="integer">${integer}</span><span class="decimal">.</span><span class="fraction">${fraction.padEnd(2, ' ')}</span>`;
   }
 }
