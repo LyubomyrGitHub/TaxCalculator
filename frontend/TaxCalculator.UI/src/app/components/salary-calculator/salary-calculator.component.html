@@ -13,11 +13,11 @@
   </mat-card>
 
   <mat-card class="result-section" *ngIf="result">
-    <p>Gross Annual Salary: £{{result.grossAnnualSalary | number:'1.2-2'}}</p>
-    <p>Gross Monthly Salary: £{{result.grossMonthlySalary | number:'1.2-2'}}</p>
-    <p>Net Annual Salary: £{{result.netAnnualSalary | number:'1.2-2'}}</p>
-    <p>Net Monthly Salary: £{{result.netMonthlySalary | number:'1.2-2'}}</p>
-    <p>Annual Tax Paid: £{{result.annualTaxPaid | number:'1.2-2'}}</p>
-    <p>Monthly Tax Paid: £{{result.monthlyTaxPaid | number:'1.2-2'}}</p>
+    <p>Gross Annual Salary: £ {{result.grossAnnualSalary}}</p>
+    <p>Gross Monthly Salary: £ {{result.grossMonthlySalary}}</p>
+    <p>Net Annual Salary: £ {{result.netAnnualSalary}}</p>
+    <p>Net Monthly Salary: £ {{result.netMonthlySalary }}</p>
+    <p>Annual Tax Paid: £ {{result.annualTaxPaid}}</p>
+    <p>Monthly Tax Paid: £ {{result.monthlyTaxPaid}}</p>
   </mat-card>
 </div>
