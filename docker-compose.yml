@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    networks:
+      - tax-calculator-net
+
+  backend:
+    build:
+      context: ./backend # Adjust if backend folder is different
+      dockerfile: Dockerfile # Assumes backend has its own Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=TaxCalculatorDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+    networks:
+      - tax-calculator-net
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql-data:/var/opt/mssql
+    networks:
+      - tax-calculator-net
+
+networks:
+  tax-calculator-net:
+    driver: bridge
+
+volumes:
+  sql-data:
