@@ -21,7 +21,7 @@ It calculates tax based on predefined tax bands stored in an database and provid
 
    - Single run (headless): `ng test --project=tax-calculator-ui --watch=false --browsers=ChromeHeadless`
    
-   - Troubleshoot If Needed: `ng test --project=tax-calculator-ui --verbose`
+   - Troubleshoot if needed: `ng test --project=tax-calculator-ui --verbose`
 
 ## Docker Setup
 - Ensure Docker is installed.
