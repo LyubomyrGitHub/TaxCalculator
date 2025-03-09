@@ -25,14 +25,12 @@ It calculates tax based on predefined tax bands stored in an database and provid
    - Troubleshoot if needed: `ng test --project=tax-calculator-ui --verbose`
 
 ## Docker Setup
-- Ensure Docker is installed.
-- Run `docker-compose up --build` from the root directory.
-- Backend: `http://localhost:5000`
-- Frontend: `http://localhost:4200`
+   - Ensure Docker is installed.
+   - Run `docker-compose up --build` from the root directory.
+   - Backend: `http://localhost:5000`
+   - Frontend: `http://localhost:4200`
 
-   **How to Rebuild:** 
-   - Run next commands from the root directory.
-powershell
-    `docker-compose down`
-    `docker-compose build --no-cache backend` for Backend or  `docker-compose build --no-cache frontend`for Frontend
-    `docker-compose up --build`    or if needs logs     `docker-compose up --build > all_logs.txt 2>&1`
+   **How to Rebuild:**
+   - `docker-compose down`
+   - `docker-compose build --no-cache backend` for Backend or  `docker-compose build --no-cache frontend`for Frontend
+   - `docker-compose up --build`    or if needs logs     `docker-compose up --build > all_logs.txt 2>&1`
