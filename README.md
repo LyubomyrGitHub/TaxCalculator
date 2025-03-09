@@ -28,7 +28,3 @@ It calculates tax based on predefined tax bands stored in an database and provid
 - Run `docker-compose up --build` from the root directory.
 - Backend: `http://localhost:5000`
 - Frontend: `http://localhost:4200`
-- SQL Server: `localhost:1433`
-
-## Notes
-- Update the connection string in `appsettings.json` or Docker environment variables to match your SQL Server setup.

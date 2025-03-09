@@ -4,7 +4,7 @@ services:
   frontend:
     build:
       context: ./frontend/TaxCalculator.UI
-      dockerfile: Dockerfile               
+      dockerfile: Dockerfile
     ports:
       - "4200:4200"
     depends_on:
@@ -18,24 +18,11 @@ services:
       dockerfile: TaxCalculator.WebApi/Dockerfile
     ports:
       - "5000:5000"
-    depends_on:
-      - db
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Server=db;Database=TaxCalculatorDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
-    networks:
-      - tax-calculator-net
-
-  db:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Passw0rd
-      - MSSQL_PID=Express
-    ports:
-      - "1433:1433"
+      - ConnectionStrings__DefaultConnection=Data Source=/app/taxcalculator.db
     volumes:
-      - sql-data:/var/opt/mssql
+      - sqlite-data:/app
     networks:
       - tax-calculator-net
 
@@ -44,4 +31,4 @@ networks:
     driver: bridge
 
 volumes:
-  sql-data:
+  sqlite-data:
