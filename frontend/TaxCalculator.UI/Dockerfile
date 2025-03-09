@@ -4,7 +4,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . ./
-RUN npm run build -- --configuration production
+RUN npm run build  # Use the corrected script
+RUN ls -la /app/dist
+RUN ls -la /app/dist/tax-calculator-ui
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
