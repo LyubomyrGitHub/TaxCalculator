@@ -7,10 +7,7 @@ using TaxCalculator.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add CORS Policy for Dev env
-if (builder.Environment.IsDevelopment()) 
-{
-    builder.Services.AddCors(options =>
+builder.Services.AddCors(options =>
     {
 
         options.AddDefaultPolicy(
@@ -21,7 +18,6 @@ if (builder.Environment.IsDevelopment())
                     .AllowAnyMethod();
             });
     });
-}
 
 // Add services to the container
 builder.Services.AddControllers();
@@ -35,11 +31,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 
-// Enable CORS before using controllers for Dev env
-if (builder.Environment.IsDevelopment())
-{
-    app.UseCors();
-}
+app.UseCors();
 
 app.UseSwagger();
 app.UseSwaggerUI();
