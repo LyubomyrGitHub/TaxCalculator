@@ -4,6 +4,9 @@
 This is a solution for a UK Income Tax Calculator built with .NET 9 (backend) and Angular 19 (frontend).
 It calculates tax based on predefined tax bands stored in an database and provides a responsive UI.
 
+## Requirements
+- Runtime: Node v22.14.0 (use [nvm](https://github.com/coreybutler/nvm-windows) to manage more versions if you need)
+
 ## How to Run
 1. **Backend**:
    - Navigate to `backend/TaxCalculator.WebApi/`.
@@ -11,16 +14,14 @@ It calculates tax based on predefined tax bands stored in an database and provid
    - Access Swagger at `http://localhost:5000/swagger`.
 2. **Frontend**:
    - Navigate to `frontend/TaxCalculator.UI/`.
-   - Run `npm install` and `ng serve`.
+   - Run `npm install` This installs all npm dependencies.
+   - Run `ng serve`
    - Access the app at `http://localhost:4200`.
 
 ## How to Run Frontend Tests:
-   **Navigate to `frontend/TaxCalculator.UI/`.**
-   
+   **Navigate to `frontend/TaxCalculator.UI/`.**  
    - Interactive mode: `ng test --project=tax-calculator-ui`
-
-   - Single run (headless): `ng test --project=tax-calculator-ui --watch=false --browsers=ChromeHeadless`
-   
+   - Single run (headless): `ng test --project=tax-calculator-ui --watch=false --browsers=ChromeHeadless`  
    - Troubleshoot if needed: `ng test --project=tax-calculator-ui --verbose`
 
 ## Docker Setup
