@@ -17,9 +17,10 @@ services:
       context: ./backend
       dockerfile: TaxCalculator.WebApi/Dockerfile
     ports:
-      - "5000:5000"
+      - "5000:8080"  # Host:5000 maps to Container:8080
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_HTTP_PORTS=8080  # Matches EXPOSE 8080
       - ConnectionStrings__DefaultConnection=Data Source=/app/taxcalculator.db
     volumes:
       - sqlite-data:/app

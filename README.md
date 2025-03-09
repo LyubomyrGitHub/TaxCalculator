@@ -14,7 +14,7 @@ It calculates tax based on predefined tax bands stored in an database and provid
    - Access Swagger at `http://localhost:5000/swagger`.
 2. **Frontend**:
    - Navigate to `frontend/TaxCalculator.UI/`.
-   - Run `npm install` This installs all npm dependencies.
+   - Run `npm install`
    - Run `ng serve`
    - Access the app at `http://localhost:4200`.
 
