@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SalaryService {
-  private apiUrl = 'http://localhost:5000/api/salary/calculate';
+  private apiUrl = 'api/salary/calculate';
 
   constructor(private http: HttpClient) {}
 

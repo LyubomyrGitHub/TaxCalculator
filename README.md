@@ -29,3 +29,10 @@ It calculates tax based on predefined tax bands stored in an database and provid
 - Run `docker-compose up --build` from the root directory.
 - Backend: `http://localhost:5000`
 - Frontend: `http://localhost:4200`
+
+   **How to Rebuild:** 
+   - Run next commands from the root directory.
+powershell
+    `docker-compose down`
+    `docker-compose build --no-cache backend` for Backend or  `docker-compose build --no-cache frontend`for Frontend
+    `docker-compose up --build`    or if needs logs     `docker-compose up --build > all_logs.txt 2>&1`
