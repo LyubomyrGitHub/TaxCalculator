@@ -7,15 +7,18 @@ using TaxCalculator.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
+if (builder.Environment.IsDevelopment())
 {
-    options.AddPolicy("ConfiguredOrigins", policy =>
+    builder.Services.AddCors(options =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        options.AddPolicy("ConfiguredOrigins", policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
     });
-});
+}
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -27,8 +30,10 @@ builder.Services.AddScoped<ITaxCalculatorService, TaxCalculatorService>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
-
-app.UseCors("ConfiguredOrigins");
+if (builder.Environment.IsDevelopment())
+{
+    app.UseCors("ConfiguredOrigins");
+}
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseRouting();
