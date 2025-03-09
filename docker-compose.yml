@@ -3,8 +3,8 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./frontend/TaxCalculator.UI
+      dockerfile: Dockerfile               
     ports:
       - "4200:4200"
     depends_on:
@@ -14,13 +14,14 @@ services:
 
   backend:
     build:
-      context: ./backend # Adjust if backend folder is different
-      dockerfile: Dockerfile # Assumes backend has its own Dockerfile
+      context: ./backend
+      dockerfile: TaxCalculator.WebApi/Dockerfile
     ports:
       - "5000:5000"
     depends_on:
       - db
     environment:
+      - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionStrings__DefaultConnection=Server=db;Database=TaxCalculatorDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
     networks:
       - tax-calculator-net
