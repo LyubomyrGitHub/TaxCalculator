@@ -26,14 +26,14 @@ describe('SalaryService', () => {
   });
 
   it('should send a POST request to calculate salary and return the response', () => {
-    const grossSalary = 50000;
+    const grossSalary = 40000;
     const mockResponse = {
-      grossAnnualSalary: 50000,
-      grossMonthlySalary: 4166.67,
-      netAnnualSalary: 38000,
-      netMonthlySalary: 3166.67,
-      annualTaxPaid: 12000,
-      monthlyTaxPaid: 1000
+      grossAnnualSalary: 40000,
+      grossMonthlySalary: 3333.33,
+      netAnnualSalary: 29000,
+      netMonthlySalary: 2416.67,
+      annualTaxPaid: 11000,
+      monthlyTaxPaid: 916.67
     };
 
     service.calculateSalary(grossSalary).subscribe(response => {
@@ -48,7 +48,7 @@ describe('SalaryService', () => {
   });
 
   it('should handle HTTP errors gracefully', () => {
-    const grossSalary = 50000;
+    const grossSalary = 40000;
     const errorMessage = 'Server error';
 
     service.calculateSalary(grossSalary).subscribe({
@@ -67,8 +67,8 @@ describe('SalaryService', () => {
   });
 
   it('should use the correct API URL from environment', () => {
-    const grossSalary = 50000;
-    const mockResponse = { grossAnnualSalary: 50000 };
+    const grossSalary = 40000;
+    const mockResponse = { grossAnnualSalary: 40000 };
 
     service.calculateSalary(grossSalary).subscribe();
 
