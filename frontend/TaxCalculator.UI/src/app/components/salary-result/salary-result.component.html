@@ -1,0 +1,28 @@
+<mat-card class="results">
+  <div class="results-table">
+    <div class="result-row">
+      <span class="label">Gross Annual Salary:</span>
+      <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.grossAnnualSalary)"></span></span>
+    </div>
+    <div class="result-row">
+      <span class="label">Gross Monthly Salary:</span>
+      <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.grossMonthlySalary)"></span></span>
+    </div>
+    <div class="result-row">
+      <span class="label">Net Annual Salary:</span>
+      <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.netAnnualSalary)"></span></span>
+    </div>
+    <div class="result-row">
+      <span class="label">Net Monthly Salary:</span>
+      <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.netMonthlySalary)"></span></span>
+    </div>
+    <div class="result-row">
+      <span class="label">Annual Tax Paid:</span>
+      <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.annualTaxPaid)"></span></span>
+    </div>
+    <div class="result-row">
+      <span class="label">Monthly Tax Paid:</span>
+      <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.monthlyTaxPaid)"></span></span>
+    </div>
+  </div>
+</mat-card>

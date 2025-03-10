@@ -1,47 +1,6 @@
 <div class="container">
   <!-- Salary Entry Screen -->
-  <div class="salary-entry">
-  <mat-card class="input-section">
-    <form [formGroup]="salaryForm" (ngSubmit)="calculate()">
-      <mat-form-field appearance="fill">
-        <mat-label>Gross Annual Salary</mat-label>
-        <input matInput type="number" formControlName="grossSalary" required>
-        <mat-error *ngIf="salaryForm.controls['grossSalary'].invalid">Please enter a valid number</mat-error>
-      </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="isCalculating || salaryForm.invalid">
-        {{ isCalculating ? 'Calculating...' : 'Calculate' }}
-      </button>
-    </form>
-  </mat-card>
-  </div>
-
+  <app-salary-entry (salarySubmitted)="onSalarySubmit($event)" [isCalculating]="isCalculating"></app-salary-entry>
   <!-- Results Screen -->
-  <mat-card  class="results" *ngIf="result">
-    <div class="results-table">
-      <div class="result-row">
-        <span class="label">Gross Annual Salary:</span>
-        <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.grossAnnualSalary)"></span></span>
-      </div>
-      <div class="result-row">
-        <span class="label">Gross Monthly Salary:</span>
-        <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.grossMonthlySalary)"></span></span>
-      </div>
-      <div class="result-row">
-        <span class="label">Net Annual Salary:</span>
-        <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.netAnnualSalary)"></span></span>
-      </div>
-      <div class="result-row">
-        <span class="label">Net Monthly Salary:</span>
-        <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.netMonthlySalary)"></span></span>
-      </div>
-      <div class="result-row">
-        <span class="label">Annual Tax Paid:</span>
-        <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.annualTaxPaid)"></span></span>
-      </div>
-      <div class="result-row">
-        <span class="label">Monthly Tax Paid:</span>
-        <span class="value">£ <span class="number" [innerHTML]="formatNumber(result.monthlyTaxPaid)"></span></span>
-      </div>
-    </div>
-  </mat-card>
+  <app-salary-result *ngIf="result" [result]="result" [formatNumber]="formatNumber.bind(this)"></app-salary-result>
 </div>

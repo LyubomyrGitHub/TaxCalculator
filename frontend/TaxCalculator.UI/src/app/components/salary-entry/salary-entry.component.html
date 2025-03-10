@@ -1,0 +1,12 @@
+<div class="salary-entry">
+  <label>Gross Annual Salary:</label>
+  <form [formGroup]="salaryForm" (ngSubmit)="submitSalary()" class="form-inline">
+    <mat-form-field appearance="fill">
+      <input matInput type="number" formControlName="grossSalary" required>
+      <mat-error *ngIf="salaryForm.controls['grossSalary'].invalid">Please enter a valid number</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="isCalculating || salaryForm.invalid">
+      {{ isCalculating ? 'Calculating...' : 'Calculate' }}
+    </button>
+  </form>
+</div>

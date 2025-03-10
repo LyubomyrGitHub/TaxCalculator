@@ -1,45 +1,36 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SalaryService } from '../../services/salary.service';
-import { finalize } from 'rxjs/operators';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { SalaryEntryComponent } from '../salary-entry/salary-entry.component';
+import { SalaryResultComponent } from '../salary-result/salary-result.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-salary-calculator',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule
-  ],
+  imports: [CommonModule, MatCardModule, SalaryEntryComponent, SalaryResultComponent],
   templateUrl: './salary-calculator.component.html',
   styleUrls: ['./salary-calculator.component.css']
 })
 export class SalaryCalculatorComponent {
-  salaryForm = new FormGroup({
-    grossSalary: new FormControl('', [Validators.required, Validators.min(0.01)])
-  });
-  isCalculating = false;
   result: any = null;
+  isCalculating: boolean = false;
 
   constructor(private salaryService: SalaryService) {}
 
-  calculate() {
-    if (this.salaryForm.invalid) return;
+  onSalarySubmit(grossSalary: number) {
     this.isCalculating = true;
-    const grossSalary = this.salaryForm.value.grossSalary as string;
-    this.salaryService.calculateSalary(Number(grossSalary))
-      .pipe(finalize(() => this.isCalculating = false))
-      .subscribe({
-        next: (result) => this.result = result,
-        error: (err) => console.error(err)
-      });
+    this.salaryService.calculateSalary(grossSalary).subscribe({
+      next: (result) => {
+        this.result = result;
+        this.isCalculating = false;
+      },
+      error: (err) => {
+        console.error('Error:', err);
+        this.result = null;
+        this.isCalculating = false;
+      }
+    });
   }
 
   formatNumber(value: number): string {

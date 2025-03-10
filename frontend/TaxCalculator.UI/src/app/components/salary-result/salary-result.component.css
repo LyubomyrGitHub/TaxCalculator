@@ -1,0 +1,26 @@
+.results {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc; /* Horizontal line per wireframe */
+}
+
+.results-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between rows */
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.value {
+  text-align: right;
+}
+
+.number {
+  font-family: monospace; /* Consistent number formatting */
+}

@@ -1,0 +1,26 @@
+.salary-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between label, input, and button */
+  padding: 10px 0; /* Vertical padding */
+}
+
+label {
+  font-weight: bold;
+  white-space: nowrap; /* Prevents label wrapping */
+}
+
+mat-form-field {
+  flex-grow: 1; /* Input takes available space */
+  margin: 0; /* Remove default margin */
+}
+
+button {
+  padding: 0 16px; /* Compact button */
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
