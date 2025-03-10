@@ -15,7 +15,7 @@ It calculates tax based on predefined tax bands stored in an database and provid
 2. **Frontend**:
    - Navigate to `frontend/TaxCalculator.UI/`.
    - Run `npm install`
-   - Run `ng serve`
+   - Run `npm start`
    - Access the app at `http://localhost:4200`.
 
 ## How to Run Frontend Tests:
