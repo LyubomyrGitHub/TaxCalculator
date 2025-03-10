@@ -1,4 +1,4 @@
-﻿namespace TaxCalculator.Core.Entities.Requests
+﻿namespace TaxCalculator.Core.Models.Requests
 {
     public class TaxRequest
     {

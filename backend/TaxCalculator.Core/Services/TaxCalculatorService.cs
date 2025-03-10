@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using TaxCalculator.Core.DTOs;
-using TaxCalculator.Core.Entities.Results;
 using TaxCalculator.Core.Interfaces;
+using TaxCalculator.Core.Models.Results;
 
 namespace TaxCalculator.Core.Services
 {

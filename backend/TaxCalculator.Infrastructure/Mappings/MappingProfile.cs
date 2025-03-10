@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using TaxCalculator.Core.DTOs;
-using TaxCalculator.Core.Entities.Results;
+using TaxCalculator.Core.Models.Results;
 using TaxCalculator.Core.Utils;
 
 namespace TaxCalculator.Infrastructure.Mappings

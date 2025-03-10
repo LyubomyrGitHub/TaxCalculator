@@ -37,7 +37,7 @@ if (builder.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseRouting();
-app.UseEndpoints(endpoints => endpoints.MapControllers());
+app.MapControllers();
 
 // Initialize database
 using (var scope = app.Services.CreateScope())

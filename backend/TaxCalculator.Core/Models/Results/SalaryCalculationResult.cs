@@ -1,4 +1,4 @@
-﻿namespace TaxCalculator.Core.Entities.Results
+﻿namespace TaxCalculator.Core.Models.Results
 {
     public class SalaryCalculationResult
     {
