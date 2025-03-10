@@ -32,5 +32,6 @@ It calculates tax based on predefined tax bands stored in an database and provid
 
    **How to Rebuild:**
    - `docker-compose down`
-   - `docker-compose build --no-cache backend` for Backend or  `docker-compose build --no-cache frontend`for Frontend
+   - `docker-compose build --no-cache backend` for Backend 
+   - `docker-compose build --no-cache frontend`for Frontend
    - `docker-compose up --build`    or if needs logs     `docker-compose up --build > all_logs.txt 2>&1`
