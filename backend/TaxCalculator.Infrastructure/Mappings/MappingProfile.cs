@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TaxCalculator.Core.DTOs;
+using TaxCalculator.Core.Entities;
 using TaxCalculator.Core.Models.Results;
 using TaxCalculator.Core.Utils;
 
@@ -16,6 +17,8 @@ namespace TaxCalculator.Infrastructure.Mappings
                 .ForMember(dest => dest.NetAnnualSalary, opt => opt.MapFrom(src => RoundUtil.UptoTwoDecimalPoints(src.GrossAnnualSalary - src.AnnualTaxPaid)))
                 .ForMember(dest => dest.NetMonthlySalary, opt => opt.MapFrom(src => RoundUtil.UptoTwoDecimalPoints((src.GrossAnnualSalary - src.AnnualTaxPaid) / 12)))
                 .ForMember(dest => dest.MonthlyTaxPaid, opt => opt.MapFrom(src => RoundUtil.UptoTwoDecimalPoints(src.AnnualTaxPaid / 12)));
+
+            CreateMap<TaxBand, TaxBandResult>();
         }
     }
 }

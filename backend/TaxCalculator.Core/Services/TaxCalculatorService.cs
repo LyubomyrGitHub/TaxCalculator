@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using TaxCalculator.Core.DTOs;
+using TaxCalculator.Core.Entities;
 using TaxCalculator.Core.Interfaces;
 using TaxCalculator.Core.Models.Results;
+using System;
 
 namespace TaxCalculator.Core.Services
 {
@@ -45,6 +47,12 @@ namespace TaxCalculator.Core.Services
             };
 
             return _mapper.Map<SalaryCalculationResult>(result);
+        }
+
+        public async Task<List<TaxBandResult>> GetAllTaxBandAsync(CancellationToken token)
+        {
+            var taxBands = await _taxBandRepository.GetAllAsync(token);
+            return _mapper.Map<List<TaxBand>, List<TaxBandResult>>(taxBands);
         }
     }
 }

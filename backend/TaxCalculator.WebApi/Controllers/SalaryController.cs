@@ -17,5 +17,12 @@ namespace TaxCalculator.WebApi.Controllers
             var result = await taxCalculatorService.CalculateTaxAsync(request.GrossSalary, token);
             return Ok(result);
         }
+
+        [HttpGet("list")]
+        public async Task<IActionResult> GetAllTaxBandList(CancellationToken token)
+        {
+            var result = await taxCalculatorService.GetAllTaxBandAsync(token);
+            return Ok(result);
+        }
     }
 }
