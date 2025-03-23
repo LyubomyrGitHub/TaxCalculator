@@ -13,12 +13,8 @@ export class SalaryService {
     const request = { grossSalary };
     return this.http.post(`${this.apiUrl}/calculate`, request);
   }
-  
-  getSalaryList(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/list`);
-  }
 
-  getTaxBands(): Observable<TaxBandResult[]> { // New method
+  getTaxBands(): Observable<TaxBandResult[]> {
     return this.http.get<TaxBandResult[]>(`${this.apiUrl}/list`);
   }
 }
