@@ -1,0 +1,59 @@
+.tax-band-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filter-panel {
+  width: 250px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.parent-node {
+  font-weight: bold;
+  color: #333;
+}
+
+.table-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.search-box {
+  width: 200px;
+  align-self: flex-end;
+}
+
+mat-table {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+mat-header-cell, mat-cell {
+  padding: 10px;
+}
+
+mat-header-cell {
+  background-color: #e0e0e0;
+  font-weight: bold;
+  color: #333;
+}
+
+mat-cell {
+  text-align: right;
+  color: #555;
+}
+
+mat-paginator {
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+}
