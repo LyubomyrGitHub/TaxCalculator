@@ -5,16 +5,9 @@ import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
-
-interface FilterNode {
-  name: string;
-  children?: FilterNode[];
-  value?: number | null;
-}
 
 @Component({
   selector: 'app-tax-band-list',
@@ -26,7 +19,6 @@ interface FilterNode {
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
-    MatCheckboxModule,
     FormsModule
   ],
   templateUrl: './tax-band-list.component.html',
@@ -38,13 +30,10 @@ export class TaxBandListComponent implements AfterViewInit {
   searchText: string = '';
   pageSizeOptions: number[] = [5, 10, 25, 50];
   pageSize: number = 10;
-  private allTaxBands: TaxBandResult[] = []; // Store original data
+  allTaxBands: TaxBandResult[] = [];
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  filterData: FilterNode[] = [];
-  selectedFilters: Set<string> = new Set();
 
   constructor(private salaryService: SalaryService) {}
 
@@ -57,19 +46,19 @@ export class TaxBandListComponent implements AfterViewInit {
   loadTaxBands() {
     this.salaryService.getTaxBands().subscribe({
       next: (taxBands) => {
-        this.allTaxBands = taxBands; // Store original data
-        this.dataSource.data = taxBands; // Set initial data
-        this.updateFilterData(taxBands);
+        this.allTaxBands = taxBands || [];
+        this.dataSource.data = this.allTaxBands;
       },
-      error: (err) => console.error('Error fetching tax bands:', err)
+      error: (err) => {
+        this.allTaxBands = [];
+        this.dataSource.data = [];
+      }
     });
   }
 
   applyFilter() {
-    let filteredData = [...this.allTaxBands]; // Start with full dataset
-
-    // Apply search filter
-    if (this.searchText.trim()) { // Only filter if search text is non-empty
+    let filteredData = [...this.allTaxBands];
+    if (this.searchText.trim()) {
       const filterValue = this.searchText.toLowerCase().trim();
       filteredData = filteredData.filter(band =>
         band.lowerLimit.toString().includes(filterValue) ||
@@ -77,8 +66,7 @@ export class TaxBandListComponent implements AfterViewInit {
         band.taxRate.toString().includes(filterValue)
       );
     }
-
-    this.dataSource.data = filteredData; // Update table data
+    this.dataSource.data = filteredData;
   }
 
   sortData(sort: Sort) {
@@ -100,28 +88,6 @@ export class TaxBandListComponent implements AfterViewInit {
 
   onPageChange(event: PageEvent) {
     this.pageSize = event.pageSize;
-  }
-
-  updateFilterData(taxBands: TaxBandResult[]) {
-    const lowerLimits = [...new Set(taxBands.map(b => b.lowerLimit))];
-    const upperLimits = [...new Set(taxBands.map(b => b.upperLimit).filter(v => v !== null))];
-    const taxRates = [...new Set(taxBands.map(b => b.taxRate))];
-
-    this.filterData = [
-      { name: 'LowerLimit', children: lowerLimits.map(value => ({ name: value.toString(), value })) },
-      { name: 'UpperLimit', children: [{ name: 'null', value: null }].concat(upperLimits.map(value => ({ name: value!.toString(), value }))) },
-      { name: 'TaxRate', children: taxRates.map(value => ({ name: value.toString(), value })) }
-    ];
-  }
-
-  toggleFilter(node: FilterNode) {
-    const key = `${node.name.toLowerCase()}:${node.value ?? 'null'}`;
-    if (this.selectedFilters.has(key)) {
-      this.selectedFilters.delete(key);
-    } else {
-      this.selectedFilters.add(key);
-    }
-    this.applyFilter();
   }
 
   private compare(a: number, b: number, isAsc: boolean) {
