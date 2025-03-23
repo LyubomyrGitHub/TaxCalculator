@@ -1,5 +1,6 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { SalaryService, TaxBandResult } from '../../services/salary.service';
+import { SalaryService } from '../../services/salary.service';
+import { TaxBandResult } from '../../models/tax-band-result.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';

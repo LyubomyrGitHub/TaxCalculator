@@ -19,10 +19,3 @@ export class SalaryService {
     return this.http.get<TaxBandResult[]>(`${this.apiUrl}/list`);
   }
 }
-
-// Interface for TaxBandResult
-export interface TaxBandResult {
-  lowerLimit: number;
-  upperLimit: number | null;
-  taxRate: number;
-}
