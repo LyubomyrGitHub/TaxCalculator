@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { TaxBandListComponent } from './tax-band-list.component';
-import { SalaryService, TaxBandResult } from '../../services/salary.service';
+import { SalaryService } from '../../services/salary.service';
+import { TaxBandResult } from '../../models/tax-band-result.model';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';

@@ -1,6 +1,7 @@
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { SalaryService, TaxBandResult } from './salary.service';
+import { SalaryService } from './salary.service';
+import { TaxBandResult } from '../models/tax-band-result.model';
 import { environment } from '../../environments/environment';
 
 describe('SalaryService', () => {
