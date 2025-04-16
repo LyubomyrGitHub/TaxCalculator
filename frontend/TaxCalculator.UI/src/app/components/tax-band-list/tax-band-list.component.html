@@ -1,0 +1,28 @@
+<div class="table-panel">
+  <mat-form-field appearance="outline" class="search-box">
+    <mat-label>Search</mat-label>
+    <input matInput [(ngModel)]="searchText" (input)="applyFilter()" placeholder="Search tax bands...">
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+    <ng-container matColumnDef="lowerLimit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Lower Limit</mat-header-cell>
+      <mat-cell *matCellDef="let band">{{ band.lowerLimit }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="upperLimit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Upper Limit</mat-header-cell>
+      <mat-cell *matCellDef="let band">{{ band.upperLimit !== null ? band.upperLimit : 'N/A' }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="taxRate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Tax Rate (%)</mat-header-cell>
+      <mat-cell *matCellDef="let band">{{ band.taxRate }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+</div>
