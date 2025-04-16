@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "aot": true, // Explicitly set (default anyway)
             "outputPath": "dist/tax-calculator-ui",
             "index": "src/index.html",
             "browser": "src/main.ts",
